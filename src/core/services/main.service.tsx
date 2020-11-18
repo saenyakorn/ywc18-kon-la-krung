@@ -1,5 +1,5 @@
 import { httpClient } from "./utils"
 
-export const getCatagories = () => {
-  return httpClient.get("/")
+export const getAllData = async () => {
+  return (await httpClient.get("/")).data
 }
