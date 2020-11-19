@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback } from "react"
 import { Radio } from "antd"
 import { RadioChangeEvent } from "antd/lib/radio"
 import { useDataCenterContext } from "../../controllers/dataCenter.controller"
@@ -10,13 +10,11 @@ import { DEFAULT_SHOP } from "../../constants/defaultValue"
 export interface ShopRadioGroupProps {}
 
 export default function ShopRadioGroupComponent() {
-  const [value, setValue] = useState<string>()
   const { categories } = useDataCenterContext()
-  const { setSelectedShop } = useSearchContext()
+  const { selectedShop, setSelectedShop } = useSearchContext()
 
   const toggleRadio = useCallback(
     (e: RadioChangeEvent) => {
-      setValue(e.target.value)
       setSelectedShop(e.target.value)
     },
     [setSelectedShop]
@@ -24,7 +22,7 @@ export default function ShopRadioGroupComponent() {
 
   return (
     <Radio.Group
-      value={value}
+      value={selectedShop}
       onChange={toggleRadio}
       className="radio-group"
       defaultValue={DEFAULT_SHOP}>

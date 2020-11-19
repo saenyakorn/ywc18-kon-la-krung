@@ -9,6 +9,8 @@ import {
 } from "../constants/defaultValue"
 
 export interface SearchConstruct {
+  searching: string | undefined
+  setSearching: React.Dispatch<React.SetStateAction<string | undefined>>
   selectedShop: string
   setSelectedShop: React.Dispatch<React.SetStateAction<string>>
   selectedCategory: string
@@ -27,7 +29,7 @@ export const useSearchContext = () => useContext(SearchContext)
 
 export default function SearchProvider({ ...props }) {
   const { categories, merchants } = useDataCenterContext()
-
+  const [searching, setSearching] = useState<string>()
   const [selectedShop, setSelectedShop] = useState<string>(DEFAULT_SHOP)
   const [selectedCategory, setSelectedCategory] = useState<string>(DEFAULT_CATEGORY)
   const [selectedPriceLevel, setSelectedPriceLevel] = useState<number>(DEFAULT_PRICE_LEVEL)
@@ -40,20 +42,40 @@ export default function SearchProvider({ ...props }) {
 
   const currentMerchants = useMemo(() => {
     let filteredMerchants = merchants?.filter((merchant, index) => {
-      if (selectedShop === DEFAULT_SHOP) return true
+      let filteredSearching: Boolean =
+        !!searching &&
+        (merchant.shopNameTH.includes(searching) ||
+          merchant.categoryName.includes(searching) ||
+          merchant.subcategoryName.includes(searching) ||
+          merchant.highlightText.includes(searching) ||
+          merchant.facilities.includes(searching) ||
+          merchant.recommendedItems.includes(searching))
+      let filteredShop: Boolean =
+        selectedShop === DEFAULT_SHOP || currentCategory?.indexOf(merchant.subcategoryName) !== -1
       let filteredProvinceName: Boolean =
         selectedProvince === DEFAULT_PROVINCE ||
         merchant.addressProvinceName.indexOf(selectedProvince) !== -1
       let filteredCategory: Boolean =
         selectedCategory === DEFAULT_CATEGORY || merchant.subcategoryName === selectedCategory
       let filteredPriceLevel: Boolean = merchant.priceLevel <= selectedPriceLevel
-      console.log(index, filteredProvinceName, filteredCategory, filteredPriceLevel)
-      return filteredProvinceName && filteredCategory && filteredPriceLevel
+      return !!searching
+        ? filteredSearching
+        : filteredShop && filteredProvinceName && filteredCategory && filteredPriceLevel
     })
     return filteredMerchants
-  }, [merchants, selectedCategory, selectedPriceLevel, selectedProvince, selectedShop])
+  }, [
+    searching,
+    merchants,
+    selectedCategory,
+    selectedPriceLevel,
+    selectedProvince,
+    selectedShop,
+    currentCategory
+  ])
 
   const value = {
+    searching,
+    setSearching,
     selectedShop,
     setSelectedShop,
     selectedCategory,

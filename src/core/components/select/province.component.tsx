@@ -15,7 +15,7 @@ export interface ProvinceSelectProps {
 
 export default function ProvinceSelectComponent(props: ProvinceSelectProps) {
   const { provinces } = useDataCenterContext()
-  const { setSelectedProvince } = useSearchContext()
+  const { selectedProvince, setSelectedProvince } = useSearchContext()
 
   const handleChange = useCallback(
     (value: string) => {
@@ -27,6 +27,7 @@ export default function ProvinceSelectComponent(props: ProvinceSelectProps) {
   return (
     <Select
       showSearch
+      value={selectedProvince}
       defaultValue={DEFAULT_PROVINCE}
       placeholder="กรุณาเลือกสถานที่"
       optionFilterProp="children"

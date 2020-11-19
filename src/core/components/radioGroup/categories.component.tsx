@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback } from "react"
 import { Radio } from "antd"
 import { RadioChangeEvent } from "antd/lib/radio"
 import { useSearchContext } from "../../controllers/search.controller"
@@ -9,12 +9,10 @@ import { DEFAULT_CATEGORY } from "../../constants/defaultValue"
 export interface CategoriesRadioGroupProps {}
 
 export default function CategoriesRadioGroupComponent() {
-  const [value, setValue] = useState<string>()
-  const { currentCategory, setSelectedCategory } = useSearchContext()
+  const { currentCategory, selectedCategory, setSelectedCategory } = useSearchContext()
 
   const toggleRadio = useCallback(
     (e: RadioChangeEvent) => {
-      setValue(e.target.value)
       setSelectedCategory(e.target.value)
     },
     [setSelectedCategory]
@@ -22,7 +20,7 @@ export default function CategoriesRadioGroupComponent() {
 
   return (
     <Radio.Group
-      value={value}
+      value={selectedCategory}
       onChange={toggleRadio}
       className="radio-group"
       defaultValue={DEFAULT_CATEGORY}>

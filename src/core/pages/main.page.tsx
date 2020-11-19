@@ -1,9 +1,9 @@
-import { Col, Row, Typography } from "antd"
+import { Typography } from "antd"
 import React, { useMemo } from "react"
 
 import "./main.style.less"
 
-import SidebarComponent from "../components/sidebar.component"
+import SidebarComponent from "../components/optionBar.component"
 import { useSearchContext } from "../controllers/search.controller"
 import CardListComponent from "../components/card/cardList.component"
 import SubNavbarComponent from "../components/navbar/subNavbar.component"
@@ -24,18 +24,18 @@ const MainPage = () => {
     <>
       <MainNavbarComponent />
       <SubNavbarComponent />
-      <div className="container">
+      <div className="main-container">
         <Title level={4} className="header">
           {currentTitle}
         </Title>
-        <Row gutter={16}>
-          <Col xs={0} md={6}>
+        <div className="component-container">
+          <div className="responsive-sidebar">
             <SidebarComponent />
-          </Col>
-          <Col xs={24} md={18}>
+          </div>
+          <div className="responsive-cardlist">
             <CardListComponent />
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     </>
   )

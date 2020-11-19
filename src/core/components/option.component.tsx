@@ -1,7 +1,5 @@
-import { Card, Typography } from "antd"
+import { Typography } from "antd"
 import React from "react"
-
-import "./sidebar.style.less"
 
 import ShopRadioGroupComponent from "./radioGroup/shop.component"
 import ProvinceSelectComponent from "./select/province.component"
@@ -14,12 +12,12 @@ import { DEFAULT_SHOP } from "../constants/defaultValue"
 
 const { Title } = Typography
 
-export interface SidebarProps {}
+export interface OptionProps {}
 
-export default function SidebarComponent() {
+export default function OptionComponent() {
   const { selectedShop } = useSearchContext()
   return (
-    <Card className="sidebar">
+    <>
       <Title level={5}>ประเภทร้านค้า</Title>
       <ShopRadioGroupComponent />
       <Title level={5}>จังหวัด/ใกล้ฉัน</Title>
@@ -32,6 +30,6 @@ export default function SidebarComponent() {
           <CategoriesRadioGroupComponent />
         </>
       )}
-    </Card>
+    </>
   )
 }

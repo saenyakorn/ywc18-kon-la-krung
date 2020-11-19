@@ -11,7 +11,7 @@ export interface PriceSelectProps {}
 
 export default function PriceSelectComponent() {
   const { priceRange } = useDataCenterContext()
-  const { setSelectedPriceLevel } = useSearchContext()
+  const { selectedPriceLevel, setSelectedPriceLevel } = useSearchContext()
 
   const handleChange = useCallback(
     (value: number) => {
@@ -25,6 +25,7 @@ export default function PriceSelectComponent() {
       showSearch
       placeholder="กรุณาเลือก"
       optionFilterProp="children"
+      value={selectedPriceLevel}
       defaultValue={DEFAULT_PRICE_LEVEL}
       onChange={handleChange}>
       <Option value={DEFAULT_PRICE_LEVEL}>ทั้งหมด</Option>

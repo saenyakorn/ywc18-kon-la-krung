@@ -1,13 +1,42 @@
-.bg-blue {
-  & > div > span > span {
-    color: white;
-  }
-  background-color: #27397c;
+@import "~antd/lib/style/themes/default.less";
+
+.hide-lg {
+  display: block;
+}
+
+.show-lg {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .navbar-container {
   width: 100%;
   padding: 1em 6em;
+}
+
+@media only screen and (max-width: @screen-md) {
+  .hide-lg {
+    display: none;
+  }
+
+  .show-lg {
+    display: block;
+  }
+
+  .navbar-container {
+    padding: 1em 3em;
+  }
+}
+
+.bg-blue {
+  & > div > span > span {
+    color: white;
+  }
+  background-color: #27397c;
 }
 
 .navbar-item {
@@ -33,6 +62,10 @@
     height: 100%;
     min-width: 150px;
   }
+}
+
+.form {
+  width: 100%;
 }
 
 .ant-select-auto-complete.autocomplete {
@@ -68,4 +101,9 @@
     color: #666;
     font-weight: bold;
   }
+}
+
+.menu-sidebar {
+  cursor: pointer;
+  margin-left: 1em;
 }
