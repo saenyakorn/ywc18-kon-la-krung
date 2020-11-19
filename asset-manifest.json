@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ywc18-kon-la-krung/static/css/main.ec1c6f50.chunk.css",
-    "main.js": "/ywc18-kon-la-krung/static/js/main.c1d3a8f9.chunk.js",
-    "main.js.map": "/ywc18-kon-la-krung/static/js/main.c1d3a8f9.chunk.js.map",
+    "main.js": "/ywc18-kon-la-krung/static/js/main.8d4563ed.chunk.js",
+    "main.js.map": "/ywc18-kon-la-krung/static/js/main.8d4563ed.chunk.js.map",
     "runtime-main.js": "/ywc18-kon-la-krung/static/js/runtime-main.b50b6a31.js",
     "runtime-main.js.map": "/ywc18-kon-la-krung/static/js/runtime-main.b50b6a31.js.map",
     "static/css/2.9da4b8ba.chunk.css": "/ywc18-kon-la-krung/static/css/2.9da4b8ba.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.9da4b8ba.chunk.css",
     "static/js/2.fa443edb.chunk.js",
     "static/css/main.ec1c6f50.chunk.css",
-    "static/js/main.c1d3a8f9.chunk.js"
+    "static/js/main.8d4563ed.chunk.js"
   ]
 }
