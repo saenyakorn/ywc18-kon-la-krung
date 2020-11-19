@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ywc18-kon-la-krung/static/css/main.b7835ac9.chunk.css",
+    "main.js": "/ywc18-kon-la-krung/static/js/main.71a29e0c.chunk.js",
+    "main.js.map": "/ywc18-kon-la-krung/static/js/main.71a29e0c.chunk.js.map",
+    "runtime-main.js": "/ywc18-kon-la-krung/static/js/runtime-main.b50b6a31.js",
+    "runtime-main.js.map": "/ywc18-kon-la-krung/static/js/runtime-main.b50b6a31.js.map",
+    "static/css/2.faa977ea.chunk.css": "/ywc18-kon-la-krung/static/css/2.faa977ea.chunk.css",
+    "static/js/2.6f06706d.chunk.js": "/ywc18-kon-la-krung/static/js/2.6f06706d.chunk.js",
+    "static/js/2.6f06706d.chunk.js.map": "/ywc18-kon-la-krung/static/js/2.6f06706d.chunk.js.map",
+    "index.html": "/ywc18-kon-la-krung/index.html",
+    "static/css/2.faa977ea.chunk.css.map": "/ywc18-kon-la-krung/static/css/2.faa977ea.chunk.css.map",
+    "static/css/main.b7835ac9.chunk.css.map": "/ywc18-kon-la-krung/static/css/main.b7835ac9.chunk.css.map",
+    "static/js/2.6f06706d.chunk.js.LICENSE.txt": "/ywc18-kon-la-krung/static/js/2.6f06706d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b50b6a31.js",
+    "static/css/2.faa977ea.chunk.css",
+    "static/js/2.6f06706d.chunk.js",
+    "static/css/main.b7835ac9.chunk.css",
+    "static/js/main.71a29e0c.chunk.js"
+  ]
+}
