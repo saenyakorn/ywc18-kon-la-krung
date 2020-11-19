@@ -17,7 +17,6 @@ export default function MainNavbarComponent() {
   const { searching, setSelectedValue } = useSearchContext()
   const [value, setValue] = useState<string>(searching)
   const { categories } = useDataCenterContext()
-  console.log(searching, value)
 
   const handleClose = useCallback(() => {
     setVisible(false)
