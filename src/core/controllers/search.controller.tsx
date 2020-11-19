@@ -83,7 +83,11 @@ export default function SearchProvider({ ...props }) {
         selectedCategory === DEFAULT_CATEGORY || merchant.subcategoryName === selectedCategory
       let filteredPriceLevel: Boolean = merchant.priceLevel <= selectedPriceLevel
       return !!searching
-        ? filteredSearching
+        ? filteredSearching &&
+            filteredShop &&
+            filteredProvinceName &&
+            filteredCategory &&
+            filteredPriceLevel
         : filteredShop && filteredProvinceName && filteredCategory && filteredPriceLevel
     })
     return filteredMerchants

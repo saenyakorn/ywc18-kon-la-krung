@@ -13,11 +13,16 @@ import { DEFAULT_SHOP } from "../constants/defaultValue"
 const { Title } = Typography
 
 const MainPage = () => {
-  const { selectedShop } = useSearchContext()
+  const { searching, selectedShop } = useSearchContext()
 
   const currentTitle = useMemo(
-    () => `ผลการค้นหา ${selectedShop} ${selectedShop !== DEFAULT_SHOP ? DEFAULT_SHOP : ""}`,
-    [selectedShop]
+    () =>
+      `ผลการค้นหา ${
+        selectedShop === DEFAULT_SHOP
+          ? `${searching} ${DEFAULT_SHOP}`
+          : `${selectedShop} ${!!searching ? `, ${searching}` : ""} ทั้งหมด`
+      }`,
+    [selectedShop, searching]
   )
 
   return (
