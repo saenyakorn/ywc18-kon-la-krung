@@ -1,0 +1,71 @@
+.bg-blue {
+  & > div > span > span {
+    color: white;
+  }
+  background-color: #27397c;
+}
+
+.navbar-container {
+  width: 100%;
+  padding: 1em 6em;
+}
+
+.navbar-item {
+  margin: auto;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  span:not(:last-child) {
+    .ant-breadcrumb-link {
+      text-decoration: underline;
+    }
+  }
+  span:last-child {
+    .ant-breadcrumb-link {
+      font-weight: bold;
+    }
+  }
+}
+
+.province-select-container {
+  margin-left: 1em;
+  & > * {
+    height: 100%;
+    min-width: 150px;
+  }
+}
+
+.ant-select-auto-complete.autocomplete {
+  width: 100%;
+}
+
+.autocomplete-dropdown {
+  .autocomplete-dropdown-label {
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 0.5em;
+    }
+  }
+  .ant-select-dropdown-menu-item-group-title {
+    color: #666;
+    font-weight: bold;
+  }
+  .ant-select-dropdown-menu-item-group {
+    border-bottom: 1px solid #f6f6f6;
+  }
+  .ant-select-dropdown-menu-item {
+    padding-left: 16px;
+  }
+  .ant-select-dropdown-menu-item.show-all {
+    text-align: center;
+    cursor: default;
+  }
+  .ant-select-dropdown-menu {
+    max-height: 300px;
+  }
+  .ant-select-dropdown-menu-item-group-title {
+    color: #666;
+    font-weight: bold;
+  }
+}

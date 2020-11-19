@@ -5,20 +5,21 @@ import { useDataCenterContext } from "../../controllers/dataCenter.controller"
 import { useSearchContext } from "../../controllers/search.controller"
 
 import "./radioGroup.style.less"
+import { DEFAULT_SHOP } from "../../constants/defaultValue"
 
 export interface ShopRadioGroupProps {}
 
 export default function ShopRadioGroupComponent() {
   const [value, setValue] = useState<string>()
   const { categories } = useDataCenterContext()
-  const { setCurrentShop } = useSearchContext()
+  const { setSelectedShop } = useSearchContext()
 
   const toggleRadio = useCallback(
     (e: RadioChangeEvent) => {
       setValue(e.target.value)
-      setCurrentShop(e.target.value)
+      setSelectedShop(e.target.value)
     },
-    [setCurrentShop]
+    [setSelectedShop]
   )
 
   return (
@@ -26,8 +27,8 @@ export default function ShopRadioGroupComponent() {
       value={value}
       onChange={toggleRadio}
       className="radio-group"
-      defaultValue="ทั้งหมด">
-      <Radio value="ทั้งหมด">ทั้งหมด</Radio>
+      defaultValue={DEFAULT_SHOP}>
+      <Radio value={DEFAULT_SHOP}>{DEFAULT_SHOP}</Radio>
       {categories?.map((category, index) => (
         <Radio key={`category-${index}`} value={category.name}>
           {category.name}

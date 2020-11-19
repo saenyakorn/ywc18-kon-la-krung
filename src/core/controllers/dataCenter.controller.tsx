@@ -5,7 +5,7 @@ export interface DataCenterConstruct {
   categories:
     | undefined
     | Array<{
-        name: string
+        name: "ร้านอาหารและเครื่องดื่ม" | "ร้านค้า OTOP" | "ร้านธงฟ้า" | "สินค้าทั่วไป"
         subcategories: string[]
       }>
   provinces: undefined | string[]
