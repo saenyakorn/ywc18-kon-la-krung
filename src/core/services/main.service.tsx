@@ -1,5 +1,5 @@
 import { httpClient } from "./utils"
 
 export const getAllData = async () => {
-  return (await httpClient.get("/")).data
+  return (await httpClient.get("")).data
 }
