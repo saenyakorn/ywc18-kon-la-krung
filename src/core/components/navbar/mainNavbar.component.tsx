@@ -14,9 +14,10 @@ export interface MainNavbarProps {}
 
 export default function MainNavbarComponent() {
   const [visible, setVisible] = useState(false)
-  const [value, setValue] = useState<string>("")
+  const { searching, setSelectedValue } = useSearchContext()
+  const [value, setValue] = useState<string>(searching)
   const { categories } = useDataCenterContext()
-  const { setSelectedValue } = useSearchContext()
+  console.log(searching, value)
 
   const handleClose = useCallback(() => {
     setVisible(false)

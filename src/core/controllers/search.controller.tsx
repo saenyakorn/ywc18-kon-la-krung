@@ -11,8 +11,8 @@ import {
 } from "../constants/defaultValue"
 
 export interface SearchConstruct {
-  searching: string | undefined
-  setSearching: React.Dispatch<React.SetStateAction<string | undefined>>
+  searching: string
+  setSearching: React.Dispatch<React.SetStateAction<string>>
   selectedShop: string
   setSelectedShop: React.Dispatch<React.SetStateAction<string>>
   selectedCategory: string
@@ -41,7 +41,9 @@ export default function SearchProvider({ ...props }) {
   const history = useHistory()
   const urlParams = new URLSearchParams(window.location.search)
   const { categories, merchants } = useDataCenterContext()
-  const [searching, setSearching] = useState<string>()
+  const [searching, setSearching] = useState<string>(
+    urlParams.has("search") ? (urlParams.get("search") as string) : ""
+  )
   const [selectedShop, setSelectedShop] = useState<string>(
     urlParams.has("shop") ? (urlParams.get("shop") as string) : DEFAULT_SHOP
   )
