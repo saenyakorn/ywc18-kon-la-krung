@@ -25,6 +25,7 @@ export interface DataCenterConstruct {
         addressProvinceName: string
         addressDistrictName: string
       }>
+  isReady: Boolean
 }
 
 export const DataCenterContext = React.createContext({} as DataCenterConstruct)

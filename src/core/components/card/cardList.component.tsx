@@ -7,6 +7,7 @@ import "./cardList.style.less"
 import FacilityIconComponent from "../icons/facilityIcon.component"
 import { FacilityIconProps } from "../icons/facilityIcon.component"
 import { useSearchContext } from "../../controllers/search.controller"
+import SkeletonImageComponent from "../skeletonImage.component"
 
 const { Title, Text } = Typography
 
@@ -27,7 +28,7 @@ export default function CardListComponent() {
           <div className="horizontal" key={`card-${index}`}>
             <Card className="card" key={`merchant-${index}`}>
               <div className="card-image-container">
-                <img
+                <SkeletonImageComponent
                   width={240}
                   height={240}
                   alt={merchant.shopNameTH}
