@@ -1,6 +1,8 @@
-import React, { useContext, useMemo, useState } from "react"
+import React, { useCallback, useContext, useMemo, useState } from "react"
 import _ from "lodash"
 import { useDataCenterContext, DataCenterConstruct } from "./dataCenter.controller"
+import { useHistory } from "react-router-dom"
+import { DEFAULT_VALUE_LIST } from "../constants/defaultValue"
 import {
   DEFAULT_PROVINCE,
   DEFAULT_SHOP,
@@ -21,6 +23,14 @@ export interface SearchConstruct {
   setSelectedProvince: React.Dispatch<React.SetStateAction<string>>
   currentCategory: string[] | undefined
   currentMerchants: DataCenterConstruct["merchants"] | undefined
+  insertQueryString: (
+    type: "search" | "shop" | "category" | "priceLevel" | "province",
+    value: string
+  ) => void
+  setSelectedValue: (
+    type: "search" | "shop" | "category" | "priceLevel" | "province",
+    value: string
+  ) => void
 }
 
 export const SearchContext = React.createContext({} as SearchConstruct)
@@ -28,12 +38,24 @@ export const SearchContext = React.createContext({} as SearchConstruct)
 export const useSearchContext = () => useContext(SearchContext)
 
 export default function SearchProvider({ ...props }) {
+  const history = useHistory()
+  const urlParams = new URLSearchParams(window.location.search)
   const { categories, merchants } = useDataCenterContext()
   const [searching, setSearching] = useState<string>()
-  const [selectedShop, setSelectedShop] = useState<string>(DEFAULT_SHOP)
-  const [selectedCategory, setSelectedCategory] = useState<string>(DEFAULT_CATEGORY)
-  const [selectedPriceLevel, setSelectedPriceLevel] = useState<number>(DEFAULT_PRICE_LEVEL)
-  const [selectedProvince, setSelectedProvince] = useState<string>(DEFAULT_PROVINCE)
+  const [selectedShop, setSelectedShop] = useState<string>(
+    urlParams.has("shop") ? (urlParams.get("shop") as string) : DEFAULT_SHOP
+  )
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    urlParams.has("category") ? (urlParams.get("category") as string) : DEFAULT_CATEGORY
+  )
+  const [selectedPriceLevel, setSelectedPriceLevel] = useState<number>(
+    urlParams.has("priceLevel")
+      ? parseInt(urlParams.get("priceLevel") as string)
+      : DEFAULT_PRICE_LEVEL
+  )
+  const [selectedProvince, setSelectedProvince] = useState<string>(
+    urlParams.has("province") ? (urlParams.get("province") as string) : DEFAULT_PROVINCE
+  )
 
   const currentCategory = useMemo(
     () => _.find(categories, item => item.name === selectedShop)?.subcategories,
@@ -73,6 +95,53 @@ export default function SearchProvider({ ...props }) {
     currentCategory
   ])
 
+  const insertQueryString = useCallback(
+    (type: "search" | "shop" | "category" | "priceLevel" | "province", value: string) => {
+      let params = new URLSearchParams(window.location.search)
+      let query = {
+        search: params.has("search") ? `${params.get("search")}` : "",
+        shop:
+          params.has("shop") && params.get("shop") !== DEFAULT_SHOP ? `${params.get("shop")}` : "",
+        category:
+          params.has("category") && params.get("category") !== DEFAULT_CATEGORY
+            ? `${params.get("category")}`
+            : "",
+        priceLevel:
+          params.has("priceLevel") && params.get("priceLevel") !== `${DEFAULT_PRICE_LEVEL}`
+            ? `${params.get("priceLevel")}`
+            : "",
+        province:
+          params.has("province") && params.get("province") !== DEFAULT_PROVINCE
+            ? `${params.get("province")}`
+            : ""
+      }
+      query[type] = value === `${DEFAULT_VALUE_LIST[type]}` ? "" : value
+      let andSymbol = false
+      let resolveQuery = Object.entries(query)
+        .map(([key, value]) => {
+          if (value === "") return ""
+          let str = `${andSymbol ? "&" : ""}${key}=${value}`
+          andSymbol = true
+          return str
+        })
+        .join("")
+      history.push(`/?${resolveQuery}`)
+    },
+    [history]
+  )
+
+  const setSelectedValue = useCallback(
+    (type: "search" | "shop" | "category" | "priceLevel" | "province", value: string) => {
+      if (type === "search") setSearching(value)
+      else if (type === "shop") setSelectedShop(value)
+      else if (type === "category") setSelectedCategory(value)
+      else if (type === "priceLevel") setSelectedPriceLevel(parseInt(value))
+      else if (type === "province") setSelectedProvince(value)
+      insertQueryString(type, value)
+    },
+    [insertQueryString]
+  )
+
   const value = {
     searching,
     setSearching,
@@ -85,7 +154,9 @@ export default function SearchProvider({ ...props }) {
     selectedProvince,
     setSelectedProvince,
     currentCategory,
-    currentMerchants
+    currentMerchants,
+    insertQueryString,
+    setSelectedValue
   }
 
   return <SearchContext.Provider value={value} {...props} />

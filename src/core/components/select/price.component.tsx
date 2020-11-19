@@ -11,13 +11,13 @@ export interface PriceSelectProps {}
 
 export default function PriceSelectComponent() {
   const { priceRange } = useDataCenterContext()
-  const { selectedPriceLevel, setSelectedPriceLevel } = useSearchContext()
+  const { selectedPriceLevel, setSelectedValue } = useSearchContext()
 
   const handleChange = useCallback(
     (value: number) => {
-      setSelectedPriceLevel(value)
+      setSelectedValue("priceLevel", `${value}`)
     },
-    [setSelectedPriceLevel]
+    [setSelectedValue]
   )
 
   return (

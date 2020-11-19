@@ -15,13 +15,13 @@ export interface ProvinceSelectProps {
 
 export default function ProvinceSelectComponent(props: ProvinceSelectProps) {
   const { provinces } = useDataCenterContext()
-  const { selectedProvince, setSelectedProvince } = useSearchContext()
+  const { selectedProvince, setSelectedValue } = useSearchContext()
 
   const handleChange = useCallback(
     (value: string) => {
-      setSelectedProvince(value)
+      setSelectedValue("province", value)
     },
-    [setSelectedProvince]
+    [setSelectedValue]
   )
 
   return (

@@ -22,6 +22,7 @@ const MainPage = () => {
 
   return (
     <>
+      <div className="static-bg"></div>
       <MainNavbarComponent />
       <SubNavbarComponent />
       <div className="main-container">

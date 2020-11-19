@@ -9,13 +9,13 @@ import { DEFAULT_CATEGORY } from "../../constants/defaultValue"
 export interface CategoriesRadioGroupProps {}
 
 export default function CategoriesRadioGroupComponent() {
-  const { currentCategory, selectedCategory, setSelectedCategory } = useSearchContext()
+  const { currentCategory, selectedCategory, setSelectedValue } = useSearchContext()
 
   const toggleRadio = useCallback(
     (e: RadioChangeEvent) => {
-      setSelectedCategory(e.target.value)
+      setSelectedValue("category", e.target.value)
     },
-    [setSelectedCategory]
+    [setSelectedValue]
   )
 
   return (

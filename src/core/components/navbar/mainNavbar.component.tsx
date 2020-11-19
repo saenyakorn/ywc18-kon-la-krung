@@ -16,7 +16,7 @@ export default function MainNavbarComponent() {
   const [visible, setVisible] = useState(false)
   const [value, setValue] = useState<string>("")
   const { categories } = useDataCenterContext()
-  const { setSearching, setSelectedShop } = useSearchContext()
+  const { setSelectedValue } = useSearchContext()
 
   const handleClose = useCallback(() => {
     setVisible(false)
@@ -29,22 +29,21 @@ export default function MainNavbarComponent() {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault()
-      setSearching(value)
+      setSelectedValue("search", value)
     },
-    [setSearching, value]
+    [setSelectedValue, value]
   )
-
-  const handleSearch = useCallback((input: string) => {
-    setValue(input)
-  }, [])
 
   const handleSelect = useCallback(
     (value: string) => {
-      setSearching("")
-      setSelectedShop(value)
+      setSelectedValue("search", "")
+      setSelectedValue("shop", value)
     },
-    [setSearching, setSelectedShop]
+    [setSelectedValue]
   )
+  const handleSearch = useCallback((input: string) => {
+    setValue(input)
+  }, [])
 
   return (
     <div className="navbar-container">
@@ -61,7 +60,6 @@ export default function MainNavbarComponent() {
           className="show-lg"
           src="https://search-merchant.xn--42caj4e6bk1f5b1j.com/images/halfhalf-logo-mini.png"
         />
-
         <div className="province-select-container">
           <ProvinceSelectComponent />
         </div>

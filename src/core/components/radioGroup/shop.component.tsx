@@ -11,13 +11,13 @@ export interface ShopRadioGroupProps {}
 
 export default function ShopRadioGroupComponent() {
   const { categories } = useDataCenterContext()
-  const { selectedShop, setSelectedShop } = useSearchContext()
+  const { selectedShop, setSelectedValue } = useSearchContext()
 
   const toggleRadio = useCallback(
     (e: RadioChangeEvent) => {
-      setSelectedShop(e.target.value)
+      setSelectedValue("shop", e.target.value)
     },
-    [setSelectedShop]
+    [setSelectedValue]
   )
 
   return (
