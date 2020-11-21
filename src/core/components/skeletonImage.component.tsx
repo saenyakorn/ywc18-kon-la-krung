@@ -19,7 +19,6 @@ export default function SkeletonImageComponent({
 
   return (
     <>
-      {" "}
       {loading && <Skeleton.Avatar className={className} active shape="square" />}
       <img
         alt={alt}

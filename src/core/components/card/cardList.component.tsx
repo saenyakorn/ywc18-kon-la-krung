@@ -10,7 +10,11 @@ import SkeletonImageComponent from "../skeletonImage.component"
 import BadgeComponent from "../badge.component"
 import { useDataCenterContext } from "../../controllers/dataCenter.controller"
 
+import createDOMPurify from "dompurify"
+
 const { Title, Text } = Typography
+
+const DOMPurify = createDOMPurify(window)
 
 export interface CardListProps {}
 
@@ -69,7 +73,10 @@ export default function CardListComponent() {
                   <Divider type="horizontal" />
                   <div className="highlightText">
                     <Text className="grey-text">
-                      <div dangerouslySetInnerHTML={{ __html: `${merchant.highlightText}` }}></div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(`${merchant.highlightText}`)
+                        }}></div>
                     </Text>
                   </div>
                   <div>
