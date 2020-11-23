@@ -139,8 +139,10 @@ export default function SearchProvider({ ...props }) {
   const setSelectedValue = useCallback(
     (type: "search" | "shop" | "category" | "priceLevel" | "province", value: string) => {
       if (type === "search") setSearching(value)
-      else if (type === "shop") setSelectedShop(value)
-      else if (type === "category") setSelectedCategory(value)
+      else if (type === "shop") {
+        setSelectedShop(value)
+        if (value === DEFAULT_SHOP) setSelectedCategory(DEFAULT_CATEGORY)
+      } else if (type === "category") setSelectedCategory(value)
       else if (type === "priceLevel") setSelectedPriceLevel(parseInt(value))
       else if (type === "province") setSelectedProvince(value)
       insertQueryString(type, value)
